@@ -6,8 +6,10 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-class Controller extends BaseController
+class ContractController extends Controller
 {
-    public $namespace = 'Contract'; // registered in Service Provider
+    public function form(){
 
+        return view('Contract::contract');
+    }
 }
