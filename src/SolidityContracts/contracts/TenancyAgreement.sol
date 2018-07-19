@@ -40,6 +40,11 @@ contract TenancyAgreement {
         );
         _;
     }
+
+    modifier hasPermissionRelease(){
+        require(msg.sender == landlords[0] || msg.sender == tenants[0] || msg.sender == agent);
+        _;
+    }
     modifier onlyMaker() { // Modifier
         require(
             msg.sender == maker,
@@ -47,6 +52,12 @@ contract TenancyAgreement {
         );
         _;
     }
+
+    constructor(address  _maker) public {
+        maker = _maker;
+    }
+
+
     function setLandlords(address[] _landlords) public  onlyMaker{
         landlords = _landlords;
     }
@@ -63,5 +74,11 @@ contract TenancyAgreement {
     function enableAgent() public onlyLandlords {
         agentEnabled = true;
     }
+
+
+    function releaseFund() public hasPermissionRelease {
+
+    }
+
 
 }
